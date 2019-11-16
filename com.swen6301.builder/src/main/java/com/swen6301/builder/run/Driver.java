@@ -1,5 +1,7 @@
 package com.swen6301.builder.run;
 
+import com.swen6301.builder.constants.PatientConstants;
+import com.swen6301.builder.entity.Patient;
 import com.swen6301.builder.util.PersistenceUtils;
 import com.swen6301.builder.util.RandomUtils;
 
@@ -22,20 +24,21 @@ public class Driver {
    * Creates a sample patient info and store them on internal storage.
    */
   public static void createRandomPatientInfo() {
-    String firstName = RandomUtils.randomIdentifier();
-    String middleName = RandomUtils.randomIdentifier();
-    String lastName = RandomUtils.randomIdentifier();
-    int age = RandomUtils.randomPositiveNumber(120);
-    int weight = RandomUtils.randomPositiveNumber(300);
-    String sex = RandomUtils.randomSexString();
-    int height = RandomUtils.randomPositiveNumber(250);
-    boolean organDonor = RandomUtils.randomBoolean();
-    String bloodType = RandomUtils.randomBloodType();
-    boolean success = PersistenceUtils.storePatientInfo(firstName, middleName, lastName, age, weight, sex, height, organDonor, bloodType);
+    Patient patient = Patient.Builder()
+     .age(RandomUtils.randomPositiveNumber(PatientConstants.MAX_AGE))
+     .height(RandomUtils.randomPositiveNumber(PatientConstants.MAX_HEIGHT))
+     .weight(RandomUtils.randomPositiveNumber(PatientConstants.MAX_WEIGHT))
+     .firstName(RandomUtils.randomIdentifier())
+     .middleName(RandomUtils.randomIdentifier())
+     .lastName(RandomUtils.randomIdentifier())
+     .bloodType(RandomUtils.randomBloodTypeEnum())
+     .sex(RandomUtils.randomSexEnum())
+     .organDonor(RandomUtils.randomBoolean()).build();
+    boolean success = PersistenceUtils.storePatientInfo(patient);
     if (success) {
-      System.out.println("Patient [" + firstName + ", " + lastName + "] has been successfully processed!");
+      System.out.println("Patient [" + patient.getFirstName() + ", " + patient.getLastName() + "] has been successfully processed!");
     } else {
-      System.out.println("An error occurred while processing info for patient [" + firstName + ", " + lastName + "]!");
+      System.out.println("An error occurred while processing info for patient [" + patient.getFirstName() + ", " + patient.getLastName() + "]!");
     }
   }
 

@@ -1,5 +1,7 @@
 package com.swen6301.builder.util;
 
+import com.swen6301.builder.entity.BloodType;
+import com.swen6301.builder.entity.Gender;
 import java.util.Random;
 
 public class RandomUtils {
@@ -57,23 +59,22 @@ public class RandomUtils {
   }
 
   /**
-   * Generates a random {@link String} for blood type.
+   * Generates a random BloodType for blood type.
    *
-   * @return a random blood type {@link String}.
+   * @return a random blood type
    */
-  public static String randomBloodType() {
-    String[] bloodTypes = {"none", "a+", "a-", "o+", "o-", "b+", "b-", "ab+", "ab-"};
-    return bloodTypes[RANDOM.nextInt(bloodTypes.length)];
+  public static BloodType randomBloodTypeEnum() {
+    return BloodType.values()[RANDOM.nextInt(BloodType.values().length)];
   }
 
   /**
-   * Generates a random {@link String} for sex types.
+   * Generates a random Gender sex types.
    *
-   * @return a random sex type {@link String}.
+   * @return a random sex type .
    */
-  public static String randomSexString() {
-    String[] possibleSexValues = {"none", "male", "female"};
-    return possibleSexValues[RANDOM.nextInt(possibleSexValues.length)];
+  public static Gender randomSexEnum() {
+
+    return Gender.values()[RANDOM.nextInt(Gender.values().length)];
   }
 
 }

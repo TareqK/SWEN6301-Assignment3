@@ -10,5 +10,7 @@ package com.swen6301.builder.entity;
  * @author tareq
  */
 public enum Gender {
-
+  MALE,
+  FEMALE,
+  NONE
 }
