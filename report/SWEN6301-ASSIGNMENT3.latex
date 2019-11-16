@@ -103,23 +103,45 @@
 	\end{itemize}
 	
 \end{itemize}
-
+\newpage
 \section{Problem 2}
 \subsubsection{Calls in Whatsapp}
+\begin{itemize}
+	\item Regularly, either when the phone changes its ip/port or at regular intervals, the application backend is notified of this change.
+	\item The mobile application hosts both a SIP server and a SIP client.
+	\item When a person attempts to cocntact another person a request is sent to the server asking for the target person's IP and listening port
+	\item The server uses consistent hashing to figure out where the target person's IP and PORT are stored currently
+	\item If the target person is available, the server sends the IP and PORT the person attempting to initiate contact.
+	\item The person who is attempting to initiate contact's phone registers to the SIP server on the other person's phone, and initiates
+	a call to that person's client
+	\item the call is carried out peer-to-peer via SIP
+\end{itemize}
 
-% Session setup done centrally
-% IP and port availability regularly updated
-% Session itself done between devices
-% Handover/reconnections are re-initiation of an existing session
+\begin{figure}[!h]
+\centering
+  \includegraphics[width=15cm]{./architecture-1.png}
+\end{figure}
+
+\newpage
+
 
 \subsubsection{User Stories in Whatsapp}
-% Something Like twitter feeds
-% Feeds are pre-compiled and requested by the user
-% Dont discuss celebreties 
-
+\begin{itemize}
+	\item A person takes a video/photo and uploads it to their whatsapp story
+	\item Each person has a redis queue or similar cache for their lined up stories
+	\item For each person that has subscribed to the uploader(a contact), the story is added to their redis cache with a reference and 
+	preview
+	\item the story is sent to a Content Management System
+	\item When a person wants to see their story feed, this cache is retreived, and the previews are shown
+	\item When a person selects a story to see in detail, the story is retreived from the CMS and displayed
+\end{itemize}
+\begin{figure}[!h]
+\centering
+  \includegraphics[width=15cm]{./architecture-2.png}
+\end{figure}
+\newpage
 \section{Problem 3}
-
-See the repository  https://github.com/TareqK/SWEN6301-Assignment3
+I have done the requested enhancements. See the repository  https://github.com/TareqK/SWEN6301-Assignment3
 %______________________________________________________________________________%
 
 
