@@ -1,0 +1,135 @@
+\newtoks\course
+\newtoks\assignment
+\newtoks\professor
+\newtoks\semester
+\newtoks\duedate
+\documentclass[14pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{vhistory}
+
+
+%______________________________________________________________________________%
+\course{Software Construction}
+\assignment{Assignment 3}
+\professor{Ahmad Tamrawi}
+\semester{Fall 2019/2020}
+\duedate{2019-11-16}
+%______________________________________________________________________________%
+
+
+%______________________________________________________________________________%
+\title{\the\course\\\the\assignment}
+\author{Tareq Kirresh(TK) : 1195221}
+\begin{document}
+\begin{figure}
+\centering
+  \includegraphics[width=7cm]{./birzeit-logo.png}
+\end{figure}
+\maketitle 
+\begin{center} 
+	Course Professor : Dr. \the\professor\\
+    Semester : \the\semester\\
+    Due Date : \the\duedate\\
+\end{center}
+\newpage
+%______________________________________________________________________________%
+
+
+%______________________________________________________________________________%
+\tableofcontents 
+\newpage 
+%______________________________________________________________________________%
+
+
+%______________________________________________________________________________%
+%\begin{versionhistory}  %uncomment for version history
+%\addcontentsline{toc}{section}{Version History}
+% \vhEntry{1.0}{5.11.17}{TK|MJ|AB}{Created.} % example Version Histroy entry
+%\end{versionhistory}
+%\newpage 
+%______________________________________________________________________________%
+
+
+%______________________________________________________________________________%
+
+
+\section{Problem 1}
+\begin{itemize}
+	\item Serverless architecture, or Functions As A Service(FAAS) is an architectural
+	pattern where a software application is hosted by a third party service, thus
+	having no need for us to manage server software and hardware. Applications are broken
+	down into individual functions that can be scaled up and down and called independent of 
+	others. 
+	\item Time-to-Market(TTM) is greatly reduced with FAAS. This is because all the overhead
+	of IT Operations, such as server install(or provisioning if you are using a public cloud),
+	software installation, keeping dependencies and operating environments consistent, server
+	security management, and maintenance of the software application itself(eg, adding tenants),
+	are all no longer a concern. Additionally, software development costs are reduced, as there 
+	is no need to write much of the middleware(such as authentication, RBAC, state tracking) used 
+	for the functioning of the software, and since FAAS is fully stateless with state being impossible 
+	in FAAS due to the extreme scoping and isolation of each function.
+	
+	One such application, that 
+	was developed locally, was Jawwal's Tawjihi grades API service. IT was built  as a .NET application initiallly,
+	but was reworked and built on top of AWS Lambda, and in around a month to re-develop to be able to withstand the 
+	load of all the requests coming in during the june/july periods without having to manually scale servers up 
+	or down during that period of time.
+	
+	The general idea is that Serverless makes us focus less on how we get our functionality, and allows us to 
+	focus on the business-value creating aspects of an application rather than its operations.
+	
+	\item Non-functional requirments that can be effected when using Serverless for such an application could be
+	\begin{itemize}
+		\item Speed : while FAAS offers scalability, it also comes at a speed cost. There is no guarantee that
+		there will be CPU units available when we want to run our functions; this could lead to bottlenecks and 
+		might violate some explicit non-functional requirments.
+		
+		Additionally, FAAS is often time-limted, that is, a function can only run for a certain period of time, 
+		after which it is killed. That is to say, if I wanted to produce an Expenditures and Revenues report, or a 
+		school-wide grades report for evaluation, and it takes more than what the maximum function runtime of my
+		provider is, I may not be able to produce those reports after some data growth
+		
+		\item Data Privacy and Regulations : Due to the data contained being school/academic data and of highly personal
+		nature, and depending on the location of the school itself(US, EU, or other), there could be some violations 
+		when using FAAS, as FAAS offers no guarantee on where the function is running, simply that it is being done. Database
+		access, for example, for EU student data from US Servers is a violation of GPDR, and might fine the company if 
+		done this way.
+		
+		Additionally, the school may have wanted to run the application its own servers for the aformentioned reasons. Using 
+		FAAS, you are mostly vendor-locked to one of the cloud providers that have this server, and any privately hosted
+		FAAS servers defeats the purpouse of FAAS, since it is supposed to reduce IT Operations complexity.
+	\end{itemize}
+	
+\end{itemize}
+
+\section{Problem 2}
+\subsubsection{Calls in Whatsapp}
+% Session setup done centrally
+% IP and port availability regularly updated
+% Session itself done between devices
+% Handover/reconnections are re-initiation of an existing session
+
+\subsubsection{User Stories in Whatsapp}
+% Something Like twitter feeds
+% Feeds are pre-compiled and requested by the user
+% Dont discuss celebreties 
+
+\section{Problem 3}
+
+See the repository  https://github.com/TareqK/SWEN6301-Assignment3
+%______________________________________________________________________________%
+
+
+%______________________________________________________________________________%
+%\newpage 
+%\begin{thebibliography}{9} % uncomment for biblography
+%\addcontentsline{toc}{section}{References}
+%\bibitem{predictiveTaxi} % example biblography entry
+%Satish Kumar Verma, Hoang Tam Vo,
+%\textit{A Predictive Taxi Dispatching System for Improved User
+%Satisfaction and Taxi Utilization, SAP Innovation Center, Singapore, 2015.}
+%\end{thebibliography}
+%______________________________________________________________________________%
+\end{document}
